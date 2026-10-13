@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Run Drush inside the Drupal container:  ./bin/drush cr
+cd "$(dirname "$0")/.."
+tty=(); [ -t 0 ] || tty=(-T)   # no TTY when input is piped in
+exec docker compose exec "${tty[@]}" -u www-data drupal drush "$@"
